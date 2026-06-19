@@ -6,7 +6,7 @@ Built for addon developers. Each patch has its own page (see the navigation on t
 
 ## Patches
 
-- [**12.1.0 (PTR)** — vs 12.0.7](patches/12.1.0.md)
+- [**12.1.0 (PTR)** — vs 12.0.7](patches/12.1.0/index.md)
 
 ## How this is compiled
 

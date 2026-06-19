@@ -45,7 +45,17 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
 
+extra_css:
+  - stylesheets/extra.css
+
 nav:
   - Home: index.md
-  - Patches:
-      - 12.1.0 (PTR): patches/12.1.0.md
+  - 12.1.0 (PTR):
+      - patches/12.1.0/index.md
+      - Auras & Cooldown Viewer: patches/12.1.0/auras.md
+      - Frames, UI & Secure: patches/12.1.0/frames.md
+      - Edit Mode & Misc: patches/12.1.0/edit-mode.md
+      - Pings: patches/12.1.0/pings.md
+      - Gameplay: patches/12.1.0/gameplay.md
+      - Social & Discord: patches/12.1.0/social.md
+      - Housing: patches/12.1.0/housing.md

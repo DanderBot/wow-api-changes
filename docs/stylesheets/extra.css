@@ -1,0 +1,11 @@
+/* Wider navigation sidebars so long section / namespace names aren't clipped. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary { width: 15rem; }
+  .md-sidebar--secondary { width: 14rem; }
+}
+
+/* Let nav and table-of-contents labels wrap fully instead of being cut off. */
+.md-nav__link {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
