@@ -66,3 +66,5 @@ nav:
       - Social & Discord: patches/12.1.0/social.md
       - Housing: patches/12.1.0/housing.md
       - UI Building Blocks: patches/12.1.0/ui-blocks.md
+      - Globals & Constants: patches/12.1.0/globals.md
+      - Field-level Changes: patches/12.1.0/field-level.md

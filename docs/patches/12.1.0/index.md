@@ -46,15 +46,15 @@ Each entry says what an API **does** if it's new, or what's **different** if it 
 - [Social, Battle.net & Discord](social.md)
 - [Housing](housing.md)
 - [UI Building Blocks](ui-blocks.md) — templates, mixins, widget types, new addons
+- [Globals & Constants](globals.md) — global functions & constants in Blizzard addons
+- [Field-level Changes](field-level.md) — field/arg/value-level deltas inside existing entries
 
 ---
 
 ## Caveats / what this does NOT cover
 
-Coverage is being filled in stages. Currently in: the documented API surface (functions, events, structs, enums) and the **UI building blocks** (templates, mixins, widget types, addons). Still being added / out of scope:
+Coverage now spans the full addon-facing surface: the documented API (functions, events, structs, enums), **field-level changes** inside existing structs/enums, the **UI building blocks** (templates, mixins, widget types, addons), and **globals & constants** defined in Blizzard's addons. Out of scope:
 
-- **Field-level changes inside existing structs & enums** aren't yet enumerated automatically. The private-aura `showCountdownFrame`→`showCooldownFrame` rename was caught by manual inspection; a field-level pass over the API docs is planned to make these exhaustive.
-- **Global functions & constants defined in Blizzard's addons** (not in the generated docs) aren't catalogued yet — planned.
 - **Blizzard's internal implementation changes** (function-body rewrites that don't change a public signature, template, or global) are intentionally excluded — they can't affect addons. Use the raw source diff for those.
 - **Engine/runtime behaviour** — taint rules, secret-value handling, `error → nil`, re-opened/restricted APIs — isn't visible to a source diff. Cross-check the official PTR patch notes and the WoW Dev Discord `#api-changes` channel.
 - Reflects PTR build **12.1.0.68209**; subject to change before 12.1 goes live.
