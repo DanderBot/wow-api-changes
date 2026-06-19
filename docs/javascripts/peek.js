@@ -48,27 +48,46 @@
   document.addEventListener("click", hide, true);
 })();
 
-/* Briefly highlight the definition you jump to, so it's easy to spot. */
+/* Briefly highlight the definition you jump to, so it's easy to spot.
+   Triggered on the click itself (capture phase) so it works regardless of
+   Material's instant navigation, which doesn't fire load/hashchange. */
 (function () {
-  function flash() {
-    const id = location.hash ? decodeURIComponent(location.hash.slice(1)) : "";
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (!el) return;
+  function flashEl(el) {
+    if (!el) return false;
     const block = el.closest("li, p, tr") || el;
     block.classList.remove("api-target-flash");
-    void block.offsetWidth; // force reflow so the animation restarts on every click
+    void block.offsetWidth; // force reflow so the animation restarts every time
     block.classList.add("api-target-flash");
+    return true;
   }
+  function flashId(id, tries) {
+    if (!id) return;
+    // Same-page: the element is already here. Cross-page (instant nav): retry
+    // until the swapped-in content contains it.
+    if (flashEl(document.getElementById(id))) return;
+    if (tries > 0) setTimeout(function () { flashId(id, tries - 1); }, 120);
+  }
+  function idFromHref(href) {
+    const i = href.indexOf("#");
+    return i >= 0 ? decodeURIComponent(href.slice(i + 1)) : "";
+  }
+  document.addEventListener(
+    "click",
+    function (e) {
+      const link = e.target.closest && e.target.closest("a.xref");
+      if (link) flashId(idFromHref(link.getAttribute("href") || ""), 12);
+    },
+    true
+  );
+  // Also cover deep links opened directly and back/forward navigation.
+  function flashFromHash() {
+    flashId(location.hash ? decodeURIComponent(location.hash.slice(1)) : "", 6);
+  }
+  window.addEventListener("hashchange", flashFromHash);
+  window.addEventListener("load", flashFromHash);
   document.addEventListener("animationend", function (e) {
     if (e.target.classList && e.target.classList.contains("api-target-flash")) {
       e.target.classList.remove("api-target-flash");
     }
   });
-  window.addEventListener("hashchange", flash);
-  window.addEventListener("load", flash);
-  // Material instant navigation swaps content without a reload — re-run then too.
-  if (window.document$ && window.document$.subscribe) {
-    window.document$.subscribe(function () { setTimeout(flash, 30); });
-  }
 })();
