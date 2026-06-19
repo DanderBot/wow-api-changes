@@ -153,6 +153,8 @@ Changes *inside* API entries that exist in both builds — struct fields, enum v
 
 ### `HousingDecorInstanceInfo` (struct)
 
+Info for an instance of Housing Decor that has been/is being placed within a House or its exterior Plot
+
 ```diff
   decorGUID: WOWGUID
   decorID: number
@@ -349,6 +351,8 @@ Changes *inside* API entries that exist in both builds — struct fields, enum v
 
 #### `C_ActionBar.ForceUpdateAction`
 
+Force updates some internals for an action button slot.
+
 - args: `slotID: luaIndex` → `slotID: luaIndex, suppressEvents: bool`
 
 #### `C_CombatAudioAlert.SpeakText`
@@ -357,17 +361,25 @@ Changes *inside* API entries that exist in both builds — struct fields, enum v
 
 #### `C_HousingDecor.GetMaxPlacementBudget`
 
+Returns the max decor placement budget for the current owned house interior or plot; Can be increased via house level
+
 - returns: `maxBudget: number` → `maxBudget: number?`
 
 #### `C_HousingDecor.GetSpentPlacementBudget`
+
+Returns how much of the current owned house interior or plot's decor placement budget has been spent; Different kinds of decor take up different budget amounts, so this value isn't an individual decor count, see GetNumDecorPlaced for that
 
 - returns: `totalCost: number` → `totalCost: number?`
 
 #### `C_HousingLayout.GetRoomPlacementBudget`
 
+Returns the max room placement budget for the current owned house's interior; Can be increased via house level
+
 - returns: `placementBudget: number` → `placementBudget: number?`
 
 #### `C_HousingLayout.GetSpentPlacementBudget`
+
+Returns how much of the current owned house's room placement budget has been spent; Different kinds of rooms take up different budget amounts, so this value isn't an individual room count, see GetNumActiveRooms for that
 
 - returns: `spentPlacementBudget: number` → `spentPlacementBudget: number?`
 
@@ -389,13 +401,19 @@ Changes *inside* API entries that exist in both builds — struct fields, enum v
 
 #### `C_Spell.GetSpellName`
 
+Returns nil if spell is not found
+
 - returns: `name: string` → `name: cstring`
 
 #### `C_Spell.GetSpellTexture`
 
+Returns nothing if spell is not found
+
 - returns: `iconID: fileID, originalIconID: fileID` → `iconID: fileID, originalIconID: fileID, conditionalIconID: fileID?`
 
 #### `FrameScript.CreateSecureDelegate`
+
+Creates a secure delegate closure for a Lua function. The delegate invokes the original function in a protected call context with secure execution taint, and supports passing and returning values directly.
 
 - args: `luaFunction: LuaValueReference` → `luaFunction: LuaValueReference, options: SecureDelegateOptions?`
 
