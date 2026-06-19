@@ -1,0 +1,51 @@
+site_name: WoW API Changes
+site_description: A living reference of World of Warcraft Lua API changes between game builds (PTR and live), for addon developers.
+site_url: https://danderbot.github.io/wow-api-changes/
+repo_url: https://github.com/DanderBot/wow-api-changes
+repo_name: DanderBot/wow-api-changes
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Patches:
+      - 12.1.0 (PTR): patches/12.1.0.md
