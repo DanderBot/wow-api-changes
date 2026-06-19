@@ -48,6 +48,12 @@ markdown_extensions:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/peek.js
+
+hooks:
+  - hooks/crosslink.py
+
 nav:
   - Home: index.md
   - 12.1.0 (PTR):
