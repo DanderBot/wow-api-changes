@@ -36,3 +36,24 @@
   line-height: 1.5;
   pointer-events: none;
 }
+
+/* Keep a jumped-to definition clear of the sticky header. */
+.md-typeset code[id^="ref-"] {
+  scroll-margin-top: 4rem;
+}
+
+/* Brief highlight flash on the definition you jump to. */
+@keyframes api-target-flash {
+  from {
+    background-color: rgba(124, 77, 162, 0.4); /* fallback */
+    background-color: color-mix(in srgb, var(--md-accent-fg-color) 40%, transparent);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.md-typeset .api-target-flash {
+  animation: api-target-flash 1.8s ease-out;
+  border-radius: 0.15rem;
+  box-decoration-break: clone;
+}

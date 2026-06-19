@@ -47,3 +47,28 @@
   });
   document.addEventListener("click", hide, true);
 })();
+
+/* Briefly highlight the definition you jump to, so it's easy to spot. */
+(function () {
+  function flash() {
+    const id = location.hash ? decodeURIComponent(location.hash.slice(1)) : "";
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    const block = el.closest("li, p, tr") || el;
+    block.classList.remove("api-target-flash");
+    void block.offsetWidth; // force reflow so the animation restarts on every click
+    block.classList.add("api-target-flash");
+  }
+  document.addEventListener("animationend", function (e) {
+    if (e.target.classList && e.target.classList.contains("api-target-flash")) {
+      e.target.classList.remove("api-target-flash");
+    }
+  });
+  window.addEventListener("hashchange", flash);
+  window.addEventListener("load", flash);
+  // Material instant navigation swaps content without a reload — re-run then too.
+  if (window.document$ && window.document$.subscribe) {
+    window.document$.subscribe(function () { setTimeout(flash, 30); });
+  }
+})();
