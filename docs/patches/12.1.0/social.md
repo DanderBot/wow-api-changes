@@ -146,3 +146,24 @@ This patch lands native Discord integration: guilds can link a Discord server ch
 **New:**
 
 - **`AccountGetListRequestType`** (enum) — type of account list request. Values: `None, Battlepets`.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### C_BattleNet (BattleNetDocumentation)
+
+**New:**
+
+- `AreTitleFriendCustomNamesEnabled() → bool` — whether custom names for title friends are enabled.
+- `GetCustomTitleFriendName(id: number) → customName: string` — the custom name set for a title-friend id (may return nothing).
+- `SetCustomTitleFriendName(id: number, customName: cstring)` — sets a custom display name for a title-friend id.
+- `SetAppearOffline(isAppearOffline: bool = true)` — sets whether the player appears offline to Battle.net friends.
+
+### C_FriendList (FriendListDocumentation)
+
+**New:**
+
+- `IsLegacyFriendSystemEnabled() → bool` — whether the legacy friend system is enabled.
+- `BATTLE_NET_TITLE_FRIEND_CUSTOM_NAME_ENABLED_STATUS_UPDATED` (event) — custom title-friend-name enabled status changed. Payload: none.
+- `LEGACY_FRIEND_SYSTEM_STATUS_UPDATED` (event) — legacy friend system status changed. Payload: none.

@@ -51,3 +51,19 @@
 
 - **`GetFlavorNodeForCompanion(companionID: number?) → nodeID: number`** — the flavor trait node ID for a delve companion.
 - **`GetFlavorNodeNameForCompanion(companionID: number?) → name: cstring`** — the display name of that flavor node.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### EditModeManagerConstantsDocumentation
+
+**New:**
+
+- `EditModeLossOfControlSetting` (enum) — settings for the Loss of Control edit-mode system. Values: `Size`.
+- `RaidDispelOverlayType` (enum) — raid dispel overlay style. Values: `Disabled`, `UseDebuffColor`, `UseBlack`.
+
+**Changed:**
+
+- `EditModeSystem` (enum) — added `LossOfControl`.
+- `EditModeAccountSetting` (enum) — added `ShowLossOfControl`.

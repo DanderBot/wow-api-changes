@@ -9,3 +9,43 @@ Housing saw broad changes across many namespaces; most are internal UI plumbing 
 - **C_HousingDecor** — decor pet-placement: `GetDecorCanAttachPet`, `GetDecorAssignedPetName`, `GetMax/SpentPetPlacementBudget`, `GetBothMaxPlacementBudgets`, `AnyDecorPlacedInRoom`.
 - **C_HousingCustomizeMode** — `ApplyPetToSelectedDecor`, `GetSelectedDecorPetInfo`.
 - **PlayerHousingConstants** — added `HousingBlueprintFlag`, `HousingHouseScope` enums + a `HousingConsts` table.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### C_HouseEditor (HouseEditorUIDocumentation)
+
+**New:**
+
+- `GetHouseEditorPlayerType() → playerType: HouseEditorPlayerType` — the player's relationship to the current house/plot.
+- `HouseEditorPlayerType` (enum) — `None`, `Owner`, `Visitor`.
+
+### C_HousingBlueprint (HousingBlueprintUIDocumentation)
+
+**New:**
+
+- `GetExportAvailability() → HousingResult` — Success if the player can export blueprints, else an error type.
+- `GetImportAvailability() → HousingResult` — Success if the player can import blueprints, else an error type.
+- `GetFeatureAvailability() → HousingResult` — Success if blueprints are enabled as a feature.
+- `StartImportRoomBlueprint(shareCode: cstring)` — starts importing a room blueprint (opens Layout Mode to pick a door).
+- `HOUSING_BLUEPRINT_IMPORT_STARTED` (event) — a blueprint import began. Payload: none.
+- `HOUSING_BLUEPRINTS_AVAILABILITY_CHANGED` (event) — blueprint availability changed. Payload: none.
+
+**Removed:**
+
+- `IsExportAvailable` / `IsImportAvailable` — replaced by `GetExportAvailability` / `GetImportAvailability`.
+
+### C_HousingDecor / C_HousingLayout
+
+**New:**
+
+- `C_HousingDecor.GetBothSpentPlacementBudgets() → spentInterior: number?, spentExterior: number?` — spent interior & exterior placement budgets (nil if not in an owned house/plot).
+- `C_HousingLayout.GetSelectedBlueprintFloorplan() → roomID: number, shareCode: cstring` — the selected blueprint floorplan (may return nothing).
+- `C_HousingLayout.HasSelectedBlueprintFloorplan() → bool` — whether a blueprint floorplan is selected.
+
+### PlayerHousingConstants (HousingResult enum)
+
+**Changed:**
+
+- Added `AccountBanned`, `BlueprintRoomPlacementRequired`, `MaxPlacedDecorReached`, `MaxStorageDecorReached`; removed `MaxDecorReached` (superseded).

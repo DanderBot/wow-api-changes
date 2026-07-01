@@ -57,3 +57,13 @@
 
 - **`PingCooldownInfo`** (struct) — ping cooldown timing. Fields: `startTimeMs: number, endTimeMs: number`.
 - **`PingMacroInfo`** (struct) — macro-ping descriptor. Fields: `type: PingSubjectType?, targetToken: cstring?, spellID: number?, itemID: number?`.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### C_PingSecure (PingManagerSecureDocumentation)
+
+**New:**
+
+- `SendPlayerSpellCategoryPing(spellCategoryID: number) → result: SendPingResult` — pings a player spell category (secure environment only).

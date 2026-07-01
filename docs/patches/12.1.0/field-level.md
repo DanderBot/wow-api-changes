@@ -50,6 +50,7 @@ Changes *inside* API entries that exist in both builds — struct fields, enum v
   isOnline: bool
   isGameBusy: bool
   isGameAFK: bool
++ isAppearOffline: bool
   wowProjectID: number?
   characterName: string?
   realmName: string?
@@ -286,13 +287,14 @@ Info for an instance of Housing Decor that has been/is being placed within a Hou
   uiTextureKit: textureKit
   hideWarboardHeader: bool
   keepOpenAfterChoice: bool
-  showChoicesAsList: bool
   requiresSelection: bool
-  showChoicesAsGrid: bool
 + hideAnswerArt: bool
++ playerChoiceLayout: PlayerChoiceLayout
   options: table
   soundKitID: number?
   closeUISoundKitID: number?
+- showChoicesAsList: bool
+- showChoicesAsGrid: bool
 ```
 
 ### `TieredEntranceTierInfo` (struct)
@@ -307,6 +309,7 @@ Info for an instance of Housing Decor that has been/is being placed within a Hou
   modifierUIWidgetSetID: number
   lockedReason: cstring?
 + isLFG: bool
++ difficultyID: number
 ```
 
 ### `UnitPrivateAuraAnchorInfo` (struct)
@@ -332,17 +335,20 @@ Info for an instance of Housing Decor that has been/is being placed within a Hou
 - **`ClubStreamType`** — added `Discord`.
 - **`CompanionConfigSlotTypes`** — added `Flavor`.
 - **`CooldownViewerCategory`** — added `EquipSlotEssential`, `EquipSlotTracked`, `GroupBuff`, `SpecAgnosticEssential`, `SpecAgnosticTracked`.
-- **`EditModeAccountSetting`** — added `ShowRaidWarning`.
+- **`EditModeAccountSetting`** — added `ShowLossOfControl`, `ShowRaidWarning`.
 - **`EditModeMinimapSetting`** — added `IconScale`.
-- **`EditModeSystem`** — added `RaidWarning`.
+- **`EditModeSystem`** — added `LossOfControl`, `RaidWarning`.
 - **`EditModeUnitFrameSetting`** — added `BuffIconSize`, `DebuffIconSize`; removed `IconSize`.
 - **`FragmentID`** — added `FMapObject`, `FWorldStateListenerData`.
 - **`FrameTutorialAccount`** — added `HousingPetBeds`.
 - **`HouseFinderSuggestionReason`** — added `Relinquished`.
-- **`HousingResult`** — added `BlueprintCodeInvalid`, `BlueprintGenericExportError`, `BlueprintGenericImportError`, `BlueprintLocationInvalid`, `BlueprintNameInvalid`, `BlueprintNotFound`, `BlueprintRequirementsUnmet`, `BlueprintStorageLimit`, `BlueprintTypeInvalid`, `BlueprintVersionInvalid`, `InsufficientRoomBudget`, `InvalidExteriorDocument`, `InvalidInteriorDocument`, `RoomPlacementOutOfBounds`.
+- **`HousingResult`** — added `AccountBanned`, `BlueprintCodeInvalid`, `BlueprintGenericExportError`, `BlueprintGenericImportError`, `BlueprintLocationInvalid`, `BlueprintNameInvalid`, `BlueprintNotFound`, `BlueprintRequirementsUnmet`, `BlueprintRoomPlacementRequired`, `BlueprintStorageLimit`, `BlueprintTypeInvalid`, `BlueprintVersionInvalid`, `InsufficientRoomBudget`, `InvalidExteriorDocument`, `InvalidInteriorDocument`, `MaxPlacedDecorReached`, `MaxStorageDecorReached`, `RoomPlacementOutOfBounds`; removed `MaxDecorReached`.
 - **`NamePlateStyle`** — added `Classic`.
 - **`PingResult`** — added `FailedSilent`.
 - **`PingSubjectType`** — added `ActionOnCooldown`, `ActionReady`, `ActionUnavailable`.
+- **`ReportMajorCategory`** — added `InappropriateBlueprint`.
+- **`ReportMinorCategory`** — added `HousingBlueprint`.
+- **`ReportType`** — added `HousingBlueprint`.
 - **`SecretAspect`** — added `RadialProgress`.
 - **`TieredEntranceType`** — added `Lairs`.
 - **`TooltipDataLineType`** — added `ItemSpellTriggerOnEquip`, `ItemSpellTriggerOnProc`, `ItemSpellTriggerOnUse`.
@@ -527,5 +533,6 @@ Creates a secure delegate closure for a Lua function. The delegate invokes the o
 - **`ChatMsgWhisper`** — payload `text: cstring, playerName: cstring, languageName: cstring, channelName: cstring, playerName2: cstring, specialFlags: cstring, zoneChannelID: number, channelIndex: number, channelBaseName: cstring, languageID: number, lineID: number, guid: WOWGUID, bnSenderID: number, isMobile: bool, isSubtitle: bool, hideSenderInLetterbox: bool, suppressRaidIcons: bool` → `text: cstring, playerName: cstring, languageName: cstring, channelName: cstring, playerName2: cstring, specialFlags: cstring, zoneChannelID: number, channelIndex: number, channelBaseName: cstring, languageID: number, lineID: number, guid: WOWGUID, bnSenderID: number, isMobile: bool, isSubtitle: bool, hideSenderInLetterbox: bool, suppressRaidIcons: bool, discordInfo: DiscordChatInfo`
 - **`ChatMsgWhisperInform`** — payload `text: cstring, playerName: cstring, languageName: cstring, channelName: cstring, playerName2: cstring, specialFlags: cstring, zoneChannelID: number, channelIndex: number, channelBaseName: cstring, languageID: number, lineID: number, guid: WOWGUID, bnSenderID: number, isMobile: bool, isSubtitle: bool, hideSenderInLetterbox: bool, suppressRaidIcons: bool` → `text: cstring, playerName: cstring, languageName: cstring, channelName: cstring, playerName2: cstring, specialFlags: cstring, zoneChannelID: number, channelIndex: number, channelBaseName: cstring, languageID: number, lineID: number, guid: WOWGUID, bnSenderID: number, isMobile: bool, isSubtitle: bool, hideSenderInLetterbox: bool, suppressRaidIcons: bool, discordInfo: DiscordChatInfo`
 - **`ChatMsgYell`** — payload `text: cstring, playerName: cstring, languageName: cstring, channelName: cstring, playerName2: cstring, specialFlags: cstring, zoneChannelID: number, channelIndex: number, channelBaseName: cstring, languageID: number, lineID: number, guid: WOWGUID, bnSenderID: number, isMobile: bool, isSubtitle: bool, hideSenderInLetterbox: bool, suppressRaidIcons: bool` → `text: cstring, playerName: cstring, languageName: cstring, channelName: cstring, playerName2: cstring, specialFlags: cstring, zoneChannelID: number, channelIndex: number, channelBaseName: cstring, languageID: number, lineID: number, guid: WOWGUID, bnSenderID: number, isMobile: bool, isSubtitle: bool, hideSenderInLetterbox: bool, suppressRaidIcons: bool, discordInfo: DiscordChatInfo`
+- **`HousingLayoutFloorplanSelectionChanged`** — Fired when a room option in the House Chest has been selected or deselected — payload `hasSelection: bool, roomID: number` → `hasSelection: bool, roomID: number, blueprintShareCode: cstring?`
 - **`SpellUpdateCooldown`** — payload `spellID: number?, baseSpellID: number?, category: number?, startRecoveryCategory: number?` → `spellID: number?, baseSpellID: number?, category: number?, startRecoveryCategory: number?, itemID: number?`
 

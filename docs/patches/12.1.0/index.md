@@ -1,6 +1,6 @@
 # WoW 12.1.0 PTR — API Changes (vs 12.0.7)
 
-A human-readable reference of the Lua API surface changes between build **12.0.7.68256** and the **12.1.0.68209** PTR build, compiled from Blizzard's own API documentation files (`Blizzard_APIDocumentationGenerated`) plus a comparison of the shipped Blizzard addon source between the two builds.
+A human-readable reference of the Lua API surface changes between the **12.0.7** retail baseline and the **latest 12.1.0 PTR build**, compiled from Blizzard's own API documentation files (`Blizzard_APIDocumentationGenerated`) plus a comparison of the shipped Blizzard addon source between the two builds. Regenerated as new PTR builds land.
 
 Each entry says what an API **does** if it's new, or what's **different** if it changed. Descriptions are grounded in the real function signatures and Blizzard `Documentation` fields, not guessed.
 
@@ -24,6 +24,9 @@ Each entry says what an API **does** if it's new, or what's **different** if it 
 - **`C_HousingUI.IsInsideOwnHouse`** — renamed to `IsInsideOwnedHouse`.
 - **`BATTLETAG_INVITE_SHOW`** (event) — replaced by `CONFIRM_BATTLE_NET_FRIEND_INVITE_SHOW`.
 - Global `UIParent_ManageFramePositions` — removed; `Blizzard_UIParent` was split into new managed-frame / UI-mode addons. Use `ManageFramePositions`.
+- **`FrameScript.SetTableSecurityOption`** — renamed to `settablesecurity`.
+- **`SimpleFrameScriptObject.HasAnyForbiddenAspect`** — removed; use `GetForbiddenAspects` / `GetInheritableForbiddenAspects`.
+- **`C_HousingBlueprint.IsImportAvailable` / `IsExportAvailable`** — replaced by `GetImportAvailability` / `GetExportAvailability` (+ `GetFeatureAvailability`).
 
 **Major new systems.**
 
@@ -31,6 +34,8 @@ Each entry says what an API **does** if it's new, or what's **different** if it 
 - **Discord integration** — guild chat can bridge to a linked Discord channel; new `C_Discord` namespace, Battle.net "title friends", and per-friend interest tags.
 - **Radial status bars / textures** — status bars and textures can render as radial progress (`SetRenderMode(Enum.StatusBarRenderMode.Radial)` + radial-progress texture APIs). No Blizzard Lua uses it yet.
 - **Roleset / UI-mode visibility** — frames carry "roleset" tags (`SetRolesets`, `C_Roleset.ApplyRolesetFilters`) that gate visibility through the new UI-mode system.
+- **Aura Containers & Buttons** — new `AuraContainer` / `AuraButton` widget types let addons display auras in custom, secure ways: the container handles tracking/filtering (`SetUnit`, `AddAuraFilter`, `AddAuraFrame`), and buttons expose presentation setters (icon, duration cooldown/text/bar, stack count). Addons control the look but never touch the underlying aura data. (Widget types + templates are on the **UI Building Blocks** page.)
+- **Private Script Objects & Forbidden Aspects** — a new security layer behind the aura system: an object can hide a "Forbidden Partition" from addons, and `ForbiddenAspect` values (`UntrustedScriptExecution`, `EventRegistrations`, `Shown`, `ScriptedInput`, …) restrict what addons may do with an object (e.g. Aura Buttons — addons can't install script handlers, register events, or read `IsShown` on them). `SimpleFrameScriptObject` gained `GetForbiddenAspects` / `GetInheritableForbiddenAspects`; a new `ForbiddenAspectInheritance` enum controls propagation.
 
 **Edit Mode unit-frame icon size split.** `Enum.EditModeUnitFrameSetting.IconSize` was removed and split into separate `BuffIconSize` and `DebuffIconSize`. Code reading that enum value must update.
 
@@ -57,4 +62,4 @@ Coverage now spans the full addon-facing surface: the documented API (functions,
 
 - **Blizzard's internal implementation changes** (function-body rewrites that don't change a public signature, template, or global) are intentionally excluded — they can't affect addons. Use the raw source diff for those.
 - **Engine/runtime behaviour** — taint rules, secret-value handling, `error → nil`, re-opened/restricted APIs — isn't visible to a source diff. Cross-check the official PTR patch notes and the WoW Dev Discord `#api-changes` channel.
-- Reflects PTR build **12.1.0.68209**; subject to change before 12.1 goes live.
+- Reflects the **latest 12.1.0 PTR build** (regenerated 2026-06-20); subject to change before 12.1 goes live. The UnitAura secret-value changes and some Aura Button protections are rolling out over several PTR builds, so this will keep moving.

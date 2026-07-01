@@ -7,8 +7,9 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
 
 ## Addons
 
-**New addons (29):**
+**New addons (30):**
 
+- `Blizzard_AddFriend`
 - `Blizzard_AnimatedShine`
 - `Blizzard_AuraContainer`
 - `Blizzard_ButtonPulse`
@@ -50,7 +51,7 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
 - `AuraButton` — defined in `Blizzard_AuraContainer`
 - `AuraContainer` — defined in `Blizzard_AuraContainer`
 
-## Virtual templates  (new: 123, removed: 21)
+## Virtual templates  (new: 137, removed: 23)
 
 **New templates by addon:**
 
@@ -73,6 +74,7 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
     - `GroupBuffFilterSectionTemplate` — type `Frame`, inherits `ResizeLayoutFrame`, mixin `GroupBuffFilterSectionMixin`
     - `GroupBuffFilterTemplate` — type `Frame`, mixin `GroupBuffFilterMixin`
 - **Blizzard_EditMode**
+    - `EditModeLossOfControlSystemTemplate` — type `Frame`, inherits `EditModeSystemTemplate`, mixin `EditModeLossOfControlSystemMixin`
     - `EditModeRaidWarningSystemTemplate` — type `Frame`, inherits `EditModeSystemTemplate`, mixin `EditModeRaidWarningSystemMixin`
 - **Blizzard_Fonts_Shared**
     - `EditBoxFont_25` — type `FontFamily`
@@ -85,6 +87,7 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
     - `SystemFont_NamePlateLevel` — type `FontFamily`
     - `SystemFont_Shadow_Outline_Login` — type `FontFamily`
     - `UserScaledFontGame15Shadow` — type `Font`, inherits `Game15Font_Shadow`
+    - `UserScaledFontGameNormalMed2` — type `Font`, inherits `GameFontNormalMed2`
     - `UserScaledFontSystem15Shadow` — type `Font`, inherits `System15Font_Shadow`
 - **Blizzard_FriendsFrame**
     - `FriendRequestsListRealIDWarningTemplate` — type `Frame`, mixin `FriendRequestsListRealIDWarningMixin`
@@ -118,10 +121,17 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
     - `HousingBlueprintCollectionTemplate` — type `Frame`, mixin `HousingBlueprintCollectionMixin`
     - `HousingBlueprintContentEntryTemplate` — type `Button`, mixin `HousingBlueprintContentEntryMixin`
     - `HousingBlueprintContentGroupTemplate` — type `EventFrame`, mixin `HousingBlueprintContentGroupMixin`
+    - `HousingBlueprintContentSummaryTemplate` — type `Frame`, inherits `VerticalLayoutFrame`, mixin `HousingBlueprintContentSummaryMixin`
     - `HousingBlueprintExportContentTemplate` — type `Frame`
     - `HousingBlueprintImportContentTemplate` — type `Frame`
 - **Blizzard_HousingControls**
     - `HousingBlueprintActionButtonTemplate` — type `Button`, inherits `HousingControlActionButtonTemplate`, mixin `HousingBlueprintActionButtonMixin`
+- **Blizzard_HousingDashboard**
+    - `HousingDashboardBlueprintDetailsTemplate` — type `Frame`, mixin `HousingDashboardBlueprintDetailsMixin`
+    - `HousingDashboardCollectionFrameTemplate` — type `Frame`, mixin `HousingDashboardCollectionFrameMixin`
+    - `InitiativesFrameTemplate` — type `Frame`, mixin `InitiativesTabMixin`
+- **Blizzard_HousingTemplates**
+    - `HousingCatalogCategoriesVisualsTemplate` — type `Frame`, inherits `VerticalLayoutFrame`
 - **Blizzard_ManagedFrameSystem**
     - `BottomManagedFrameTemplate` — type `Frame`, inherits `ManagedFrameTemplate`
     - `ManagedFrameContainer` — type `Frame`, inherits `ManagedFrameContainerBaseTemplate`
@@ -178,7 +188,7 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
 - **Blizzard_SocialUIShared**
     - `SocialCardActionButtonTemplate` — type `Button`, mixin `SocialCardActionButtonMixin`
     - `SocialCardPresenceHolderTemplate` — type `Frame`, inherits `UserScaledFrameTemplate`, mixin `SocialCardPresenceHolderMixin`
-    - `SocialUIActionButtonTemplate` — type `Button`, inherits `UserScaledButtonFitToTextTemplate, SharedButtonTemplate`
+    - `SocialUIActionButtonTemplate` — type `Button`, inherits `UserScaledButtonFitToTextTemplate, SharedButtonTemplate`, mixin `SocialUIActionButtonMixin`
     - `SocialUIContactsFrameTemplate` — type `Frame`, mixin `SocialUIContactsFrameMixin`
     - `SocialUIFilterBarTemplate` — type `Frame`
     - `SocialUIScrollableHeaderTemplate` — type `Button`, inherits `ListHeaderVisualTemplate, ListHeaderCodeTemplate, UserScaledFrameTemplate`, mixin `SocialUIScrollableHeaderMixin`
@@ -188,8 +198,15 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
 - **Blizzard_UnitFrame**
     - `CompactUnitFrameContainerTemplate` — type `Frame`, inherits `GridLayoutFrame`, mixin `CompactUnitFrameContainerMixin`
     - `ContainedCompactUnitFrameTemplate` — type `Button`, inherits `CompactUnitFrameTemplate`
+    - `ForbiddenTargetFrameAuraButtonTemplate` — type `AuraButton`, inherits `TargetFrameAuraButtonTemplate`
+    - `ForbiddenTargetFrameBuffButtonTemplate` — type `AuraButton`, inherits `TargetFrameBuffButtonTemplate`
+    - `ForbiddenTargetFrameDebuffButtonTemplate` — type `AuraButton`, inherits `TargetFrameDebuffButtonTemplate`
     - `PlayerBottomManagedFrameTemplate` — type `Frame`, inherits `ManagedFrameTemplate`
     - `PlayerManagedContainerTemplate` — type `Frame`, inherits `VerticalLayoutFrame`, mixin `ManagedFrameContainerMixin`
+    - `TargetFrameAuraButtonTemplate` — type `AuraButton`
+    - `TargetFrameAuraContainerTemplate` — type `AuraContainer`
+    - `TargetFrameBuffButtonTemplate` — type `AuraButton`, inherits `TargetFrameAuraButtonTemplate`
+    - `TargetFrameDebuffButtonTemplate` — type `AuraButton`, inherits `TargetFrameAuraButtonTemplate`
 - **Blizzard_VisualAlerts**
     - `VisualAlertBaseTemplate` — type `Frame`, inherits `AnimateWhileShownTemplate`, mixin `VisualAlertBaseMixin`
     - `VisualAlertFlashBaseTemplate` — type `Frame`, inherits `VisualAlertBaseTemplate`, mixin `VisualAlertFlashBaseMixin`
@@ -222,29 +239,34 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
 - `PlayerFrameBottomManagedFrameTemplate` (was in `Blizzard_UnitFrame`)
 - `PlayerFrameManagedContainerTemplate` (was in `Blizzard_UnitFrame`)
 - `RaidBossEmoteFrameTemplate` (was in `Blizzard_FrameXML`)
+- `TargetBuffFrameTemplate` (was in `Blizzard_UnitFrame`)
+- `TargetDebuffFrameTemplate` (was in `Blizzard_UnitFrame`)
 - `UIParentBottomManagedFrameTemplate` (was in `Blizzard_UIParent`)
 - `UIParentManagedFrameContainer` (was in `Blizzard_UIParent`)
 - `UIParentManagedFrameTemplate` (was in `Blizzard_UIParent`)
 - `UIParentRightManagedFrameTemplate` (was in `Blizzard_UIParent`)
 - `WowMenuDropdownHighlightRadioTemplate` (was in `Blizzard_Menu`)
 
-## Lua mixins  (new: 169, removed: 11)
+## Lua mixins  (new: 206, removed: 11)
 
 **New mixins by addon:**
 
 - **Blizzard_AccessibilityTemplates**: `UserScaledButtonFitToTextMixin` (extends `UserScaledElementMixin`), `UserScaledFrameByHeightMixin`
 - **Blizzard_ActionBar**: `BaseActionButtonInfoMixin`
+- **Blizzard_AddFriend**: `BattleNetInviteFrameMixin`
+- **Blizzard_AuraContainer**: `AuraButtonInboundMixin` (extends `AuraButtonSharedMixin`), `AuraButtonPrivateMixin` (extends `AuraButtonSharedMixin`), `AuraButtonSharedMixin`, `AuraContainerAuraGroupsMixin`, `AuraContainerAuraSourceMixin`, `AuraContainerEditModeAuraSourceMixin` (extends `AuraContainerAuraSourceMixin`), `AuraContainerFramePoolProviderMixin`, `AuraContainerGroupMixin`, `AuraContainerInboundMixin` (extends `AuraContainerSharedMixin`), `AuraContainerManagedInboundMixin` (extends `AuraContainerInboundMixin, AuraContainerManagedSharedMixin`), `AuraContainerManagedMixin` (extends `AuraContainerPrivateMixin, AuraContainerManagedSharedMixin, DirtyPhaseMixin, AuraContainerAuraGroupsMixin`), `AuraContainerManagedSharedMixin` (extends `AuraContainerSharedMixin`), `AuraContainerPrivateAuraSourceMixin` (extends `AuraContainerAuraSourceMixin`), `AuraContainerPrivateMixin` (extends `AuraContainerSharedMixin`), `AuraContainerPublicAuraSourceMixin` (extends `AuraContainerAuraSourceMixin`), `AuraContainerSharedMixin`, `CustomAuraButtonInboundMixin` (extends `CustomAuraButtonSharedMixin`), `CustomAuraButtonPrivateMixin` (extends `AuraButtonPrivateMixin, CustomAuraButtonSharedMixin`), `CustomAuraButtonSharedMixin`, `CustomAuraContainerInboundMixin` (extends `CustomAuraContainerSharedMixin`), `CustomAuraContainerPrivateMixin` (extends `AuraContainerPrivateMixin, CustomAuraContainerSharedMixin`), `CustomAuraContainerSharedMixin`
 - **Blizzard_CharacterCustomize**: `CharCustomizeAlteredFormDropdownItemIconMixin`, `CharCustomizeAlteredFormDropdownItemMixin`, `CharCustomizeAlteredFormsDropdownMixin` (extends `ButtonStateBehaviorMixin, DropdownSelectionTextMixin`)
 - **Blizzard_ClientSceneVisManager**: `ClientSceneVisManagerMixin`
 - **Blizzard_CooldownViewer**: `CooldownViewerDraggedItemBaseMixin`, `CooldownViewerEditAlertBaseMixin`, `GroupBuffFilterEditVisualAlertMixin` (extends `CooldownViewerEditAlertBaseMixin`), `GroupBuffFilterItemMixin` (extends `CooldownViewerVisualAlertTargetMixin`), `GroupBuffFilterMixin`, `GroupBuffFilterSectionMixin`
-- **Blizzard_EditMode**: `EditModeRaidWarningSystemMixin`
+- **Blizzard_EditMode**: `EditModeLossOfControlSystemMixin`, `EditModeRaidWarningSystemMixin`
 - **Blizzard_FrameXMLUtil**: `GroupBuffMixin`
-- **Blizzard_FriendsFrame**: `BattleNetInviteFrameMixin`, `FriendRequestsListRealIDWarningMixin`, `FriendRequestsListSocialCardAcceptButtonMixin` (extends `ButtonStateBehaviorMixin`), `FriendRequestsListSocialCardDeclineButtonMixin`, `FriendRequestsListSocialCardMixin`, `FriendRequestsListSocialViewMixin` (extends `SocialUISystemMixin, SocialUIScrollableElementExtentPreviewerMixin`), `FriendsFrameAddFriendButtonMixin`, `FriendsFriendsWaitFrameMixin`, `FriendsListSocialCardFavoriteDisplayMixin`, `FriendsListSocialCardMixin`, `FriendsListSocialCardPartyButtonMixin`, `FriendsListSocialCardRAFSummonButtonMixin`, `FriendsListSocialCardStateDisplayMixin`, `FriendsListSocialViewMixin` (extends `SocialUISystemMixin, SocialUIScrollableElementExtentPreviewerMixin`)
+- **Blizzard_FriendsFrame**: `FriendRequestsListRealIDWarningMixin`, `FriendRequestsListSocialCardAcceptButtonMixin` (extends `ButtonStateBehaviorMixin`), `FriendRequestsListSocialCardDeclineButtonMixin`, `FriendRequestsListSocialCardMixin`, `FriendRequestsListSocialViewMixin` (extends `SocialUISystemMixin, SocialUIScrollableElementExtentPreviewerMixin`), `FriendsFrameAddFriendButtonMixin`, `FriendsFriendsWaitFrameMixin`, `FriendsListSocialCardFavoriteDisplayMixin`, `FriendsListSocialCardMixin`, `FriendsListSocialCardPartyButtonMixin`, `FriendsListSocialCardRAFSummonButtonMixin`, `FriendsListSocialCardStateDisplayMixin`, `FriendsListSocialViewMixin` (extends `SocialUISystemMixin, SocialUIScrollableElementExtentPreviewerMixin`)
 - **Blizzard_GlueXML**: `AccountLoginEditBoxMixin` (extends `NarrationEditBoxMixin`), `AccountLoginMenuButtonMixin`, `CharSelectEnterWorldButtonMixin`, `CharacterSelectAddGroupButtonMixin`, `CharacterSelectBackToActiveButtonMixin`, `CharacterSelectCreateCharacterButtonMixin`, `CharacterSelectDeleteCharacterButtonMixin`, `CharacterSelectRotateButtonMixin`, `CharacterSelectUndeleteButtonMixin`, `CharacterSelectVisibilityToggleButtonMixin`, `RealmListRealmButtonMixin`, `RealmListSortButtonMixin`, `RealmListTabButtonMixin`
 - **Blizzard_GuildBankUI**: `GuildBankPopupButtonMixin`, `GuildBankPopupCancelButtonMixin`, `GuildBankPopupEditBoxMixin`, `GuildBankPopupOkayButtonMixin`, `GuildItemSearchBoxMixin`
 - **Blizzard_HouseEditor**: `CustomizeDecorPetFrameMixin`, `DecorCustomizationsPaneMixin`, `DecorPetCustomizationMixin`, `HouseEditorPetCountMixin`, `HousingPetEntryMixin`, `PetCustomizationsPaneExpandButtonMixin`
-- **Blizzard_HousingBlueprint**: `HousingBlueprintBaseFrameMixin`, `HousingBlueprintBudgetMixin`, `HousingBlueprintCollectionEntryMixin`, `HousingBlueprintCollectionGroupMixin`, `HousingBlueprintCollectionMixin`, `HousingBlueprintContentEntryMixin`, `HousingBlueprintContentGroupMixin`, `HousingBlueprintContentListFrameMixin`, `HousingBlueprintExportFrameMixin`, `HousingBlueprintExportInputContentMixin`, `HousingBlueprintExportSuccessContentMixin`, `HousingBlueprintImportFrameMixin`, `HousingBlueprintImportInputContentMixin`, `HousingBlueprintImportLoadingFrameMixin`, `HousingBlueprintImportValidationContentMixin`, `HousingBlueprintRenameFrameMixin`
+- **Blizzard_HousingBlueprint**: `HousingBlueprintBaseFrameMixin`, `HousingBlueprintBudgetMixin`, `HousingBlueprintCollectionEntryMixin`, `HousingBlueprintCollectionGroupMixin`, `HousingBlueprintCollectionMixin`, `HousingBlueprintContentEntryMixin`, `HousingBlueprintContentGroupMixin`, `HousingBlueprintContentListFrameMixin`, `HousingBlueprintContentSummaryMixin`, `HousingBlueprintExportFrameMixin`, `HousingBlueprintExportInputContentMixin`, `HousingBlueprintExportSuccessContentMixin`, `HousingBlueprintImportFrameMixin`, `HousingBlueprintImportInputContentMixin`, `HousingBlueprintImportLoadingFrameMixin`, `HousingBlueprintImportValidationContentMixin`, `HousingBlueprintRenameFrameMixin`
 - **Blizzard_HousingControls**: `HousingBlueprintActionButtonMixin`, `HousingOwnerControlsLayoutMixin`, `HousingVisitorControlsLayoutMixin`
+- **Blizzard_HousingDashboard**: `HousingDashboardBlueprintDetailsMixin`, `HousingDashboardCollectionFrameMixin`
 - **Blizzard_HousingHouseFinder**: `IgnoreNeighborhoodButtonMixin`
 - **Blizzard_HousingTutorials**: `HousePetBedTutorialMixin`
 - **Blizzard_ManagedFrameSystem**: `ManagedFrameContainerMixin`, `ManagedFrameMixin`
@@ -257,14 +279,14 @@ The reusable building blocks addons can consume — **intrinsic widget types, vi
 - **Blizzard_RecruitAFriend**: `RewardClaimingMixin`
 - **Blizzard_SettingsDefinitions_Shared**: `SettingsAdvancedControlNarrationMixin` (extends `NarrationStaticDescriptionMixin`), `SettingsTabNarrationMixin` (extends `NarrationSkipTooltipsMixin`)
 - **Blizzard_Settings_Shared**: `SettingsButtonNarrationContextMixin`, `SettingsCheckboxNarrationContextMixin`, `SettingsDropdownNarrationContextMixin`, `SettingsSliderNarrationContextMixin`
-- **Blizzard_SharedXML**: `NarratableTooltipMixin`, `PingableType_ActionButtonMixin` (extends `PingableTypeMixin`), `PingableType_CooldownViewerItemMixin` (extends `PingableTypeMixin`), `PingableType_PlayerUnitFrameMixin` (extends `PingableType_UnitFrameMixin`), `UIPanelCloseButtonNarrationMixin`
+- **Blizzard_SharedXML**: `DirtyPhaseMixin`, `NarratableTooltipMixin`, `PingableType_ActionButtonMixin` (extends `PingableTypeMixin`), `PingableType_CooldownViewerItemMixin` (extends `PingableTypeMixin`), `PingableType_PlayerUnitFrameMixin` (extends `PingableType_UnitFrameMixin`), `UIPanelCloseButtonNarrationMixin`
 - **Blizzard_SocialUI**: `RaidFrameSocialAllAssistMixin`, `RaidFrameSocialClassTypeMixin`, `RaidFrameSocialGroupMixin`, `RaidFrameSocialMixin`, `RaidFrameSocialPlayerMixin`, `RecruitAFriendFrameSocialMixin` (extends `RecruitAFriendFrameMixin`), `RecruitListButtonSocialMixin` (extends `RecruitListButtonMixin`), `SocialRaidInfoMixin`, `SocialUIBattleNetBroadcastEditBoxMixin`, `SocialUIBattleNetBroadcastFrameMixin`, `SocialUIBattleNetControlsContainerMixin`, `SocialUIBattleNetMenuButtonMixin` (extends `SocialUISystemMixin`), `SocialUIBattleNetUnavailableNoticeButtonMixin` (extends `SocialUISystemMixin`), `SocialUIBattleNetUnavailableNoticeFrameMixin`, `SocialUICopyBattleTagToClipboardButtonMixin` (extends `ButtonStateBehaviorMixin`), `SocialUIFrameMixin` (extends `CallbackRegistryMixin`), `SocialUIIgnoreListEntryMixin`, `SocialUIIgnoreListHeaderMixin`, `SocialUIIgnoreListMixin` (extends `SocialUIScrollableElementExtentPreviewerMixin`), `SocialUIOnlineStatusDropdownMixin`, `SocialUIPersonalBattleTagDisplayMixin`, `SocialUIRaidInfoContentFrameMixin`, `SocialUIRaidInfoExtendMixin`, `SocialUIRaidInfoFrameMixin`, `SocialUITabMixin` (extends `SidePanelTabButtonMixin`)
-- **Blizzard_SocialUIShared**: `SocialCardActionButtonMixin` (extends `ButtonStateBehaviorMixin`), `SocialCardPresenceHolderMixin`, `SocialUIActionButtonMixin`, `SocialUIContactsFrameMixin`, `SocialUIOnlineSearchFilterDropdownMixin`, `SocialUIScrollableElementExtentPreviewerMixin`, `SocialUIScrollableHeaderMixin`, `SocialUIScrollableSpacerMixin`, `SocialUISearchBoxMixin`, `SocialUISystemMixin`
+- **Blizzard_SocialUIShared**: `SocialCardActionButtonMixin` (extends `ButtonStateBehaviorMixin`), `SocialCardPresenceHolderMixin`, `SocialUIActionButtonMixin`, `SocialUIAddFriendButtonMixin` (extends `SocialUIActionButtonMixin`), `SocialUIContactsFrameMixin`, `SocialUIOnlineSearchFilterDropdownMixin`, `SocialUIScrollableElementExtentPreviewerMixin`, `SocialUIScrollableHeaderMixin`, `SocialUIScrollableSpacerMixin`, `SocialUISearchBoxMixin`, `SocialUISystemMixin`
 - **Blizzard_StaticPopup**: `StaticPopupDialogNarrationMixin`
 - **Blizzard_UIModes**: `UIModeManagerMixin`
 - **Blizzard_UIPanels_Game**: `PaperDollItemSlotButtonBaseMixin`
-- **Blizzard_UnitFrame**: `CompactUnitFrameContainerMixin`, `PlayerBottomManagedFrameContainerMixin`, `TargetAuraFrameMixin`, `TargetBuffFrameMixin` (extends `TargetAuraFrameMixin`), `TargetDebuffFrameMixin` (extends `TargetAuraFrameMixin`), `TargetFrameInstanceMixin`, `TargetFramePrivateAuraAnchorMixin`
-- **Blizzard_UnitPopup**: `UnitPopupBnetFriendTagButtonBaseMixin` (extends `UnitPopupCheckboxButtonMixin`), `UnitPopupBnetFriendTagInterestsSubsectionTitleMixin` (extends `UnitPopupSubsectionTitleMixin`), `UnitPopupBnetFriendTagRolesSubsectionTitleMixin` (extends `UnitPopupSubsectionTitleMixin`), `UnitPopupBnetFriendTagsButtonMixin` (extends `UnitPopupButtonBaseMixin`)
+- **Blizzard_UnitFrame**: `CompactUnitFrameContainerMixin`, `PlayerBottomManagedFrameContainerMixin`, `TargetFrameAuraButtonInboundMixin` (extends `TargetFrameAuraButtonSharedMixin`), `TargetFrameAuraButtonPrivateMixin` (extends `AuraButtonPrivateMixin, TargetFrameAuraButtonSharedMixin`), `TargetFrameAuraButtonSharedMixin`, `TargetFrameAuraContainerInboundMixin` (extends `AuraContainerManagedInboundMixin, TargetFrameAuraContainerSharedMixin`), `TargetFrameAuraContainerPrivateMixin` (extends `AuraContainerManagedMixin, TargetFrameAuraContainerSharedMixin`), `TargetFrameAuraContainerSharedMixin` (extends `AuraContainerManagedSharedMixin`), `TargetFrameBuffButtonInboundMixin` (extends `TargetFrameBuffButtonSharedMixin`), `TargetFrameBuffButtonPrivateMixin` (extends `TargetFrameAuraButtonPrivateMixin, TargetFrameBuffButtonSharedMixin`), `TargetFrameBuffButtonSharedMixin`, `TargetFrameDebuffButtonInboundMixin` (extends `TargetFrameDebuffButtonSharedMixin`), `TargetFrameDebuffButtonPrivateMixin` (extends `TargetFrameAuraButtonPrivateMixin, TargetFrameDebuffButtonSharedMixin`), `TargetFrameDebuffButtonSharedMixin`, `TargetFrameInstanceMixin`
+- **Blizzard_UnitPopup**: `UnitPopupBnetFriendTagButtonBaseMixin` (extends `UnitPopupCheckboxButtonMixin`), `UnitPopupBnetFriendTagInterestsSubsectionTitleMixin` (extends `UnitPopupSubsectionTitleMixin`), `UnitPopupBnetFriendTagRolesSubsectionTitleMixin` (extends `UnitPopupSubsectionTitleMixin`), `UnitPopupBnetFriendTagsButtonMixin` (extends `UnitPopupButtonBaseMixin`), `UnitPopupSetCustomTitleFriendNameButtonMixin` (extends `UnitPopupButtonBaseMixin`)
 - **Blizzard_UnitPopupShared**: `UnitPopupAddTitleFriendButtonMixin` (extends `UnitPopupButtonBaseMixin`), `UnitPopupDeleteDiscordMessageButtonMixin` (extends `UnitPopupButtonBaseMixin`)
 - **Blizzard_VisualAlerts**: `VisualAlertBaseMixin` (extends `VisualAlertMixin`), `VisualAlertFlashBaseMixin`, `VisualAlertMarchingAntsBaseMixin`, `VisualAlertMixin`, `VisualAlertTargetMixin`, `VisualAlertsManagerMixin`
 

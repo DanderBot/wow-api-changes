@@ -99,3 +99,28 @@
 **New:**
 
 - **`SetIconScale(scale: number)`** — sets the scale applied to minimap icons.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### FrameScript
+
+**New:**
+
+- `settablesecurity(table: LuaValueVariant, option: TableSecurityOption)` — applies a table security option (`DisallowTaintedAccess`, `DisallowSecretKeys`, `SecretWrapContents`). Replaces the removed `SetTableSecurityOption`.
+
+**Removed:**
+
+- `SetTableSecurityOption` — replaced by `settablesecurity`.
+
+### SimpleFrameScriptObjectAPI
+
+**New:**
+
+- `GetForbiddenAspects() → aspects: ForbiddenAspect` — the mask of all forbidden aspects applied to this object.
+- `GetInheritableForbiddenAspects(inheritance: ForbiddenAspectInheritance) → aspects: ForbiddenAspect` — the mask of forbidden aspects that can propagate to others.
+
+**Removed:**
+
+- `HasAnyForbiddenAspect` (singular) — removed; the plural `HasAnyForbiddenAspects(aspects: ForbiddenAspect) → bool` is retained.

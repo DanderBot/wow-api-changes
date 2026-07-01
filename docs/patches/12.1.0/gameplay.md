@@ -65,3 +65,28 @@
 **Removed:**
 
 - **`GetDyeColorForItem(itemLinkOrID: ItemInfo) → dyeColorID: number?`** and `GetDyeColorForItemLocation(itemLocation: ItemLocation) → dyeColorID: number?` — replaced by the plural versions that return a table of IDs.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### C_EncounterJournal (EncounterJournalDocumentation)
+
+**New:**
+
+- `GetDungeonEntrancesForMap(uiMapID: number) → dungeonEntrances: table<DungeonEntranceMapInfo>` — dungeon entrances on a UI map.
+- `InstanceHasDifficultyID(difficultyID: number) → bool` — whether the current instance supports a difficulty id.
+
+### C_Navigation (InGameNavigationDocumentation)
+
+**New:**
+
+- `GetNextWaypointForMap(uiMapID: number) → x: number, y: number, waypointDescription: string` — the next waypoint on a UI map (may return nothing). Moved from `C_SuperTrack` (which removed it).
+
+### PlayerChoiceConstantsDocumentation *(new namespace)*
+
+**New:**
+
+- `PlayerChoiceFlags` (enum, bitmask) — display/behaviour flags, e.g. `InfiniteRange`, `KeepOpenAfterChoice`, `ShowChoicesAsList` / `Grid` / `Columns`, `RequiresSelection`, `HideAnswerArt`.
+- `PlayerChoiceLayout` (enum) — `Default`, `Grid`, `List`, `Columns`.
+- `PlayerChoiceResponseFlags` (enum) — per-response flags, e.g. `ShowAnswerDisabled`, `ShowArtDesaturated`, `HideButton`, `ShowAnswerSelected`.

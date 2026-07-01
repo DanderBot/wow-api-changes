@@ -3,9 +3,9 @@
 Global functions and constants defined in Blizzard's **addon Lua** (not in the generated API docs), added or removed between builds. Each function shows its parameter signature where it's on one line in source. Bodies are out of scope.
 
 !!! note "What new / removed means here"
-    A name is tracked as a **global function** when it's defined as `function Name(...)` (any indentation, excluding `local`) or `Name = function(...)`. 12.1.0 split the old monolithic FrameXML into many small addons, so this list is large. **Removed** means the name left the global namespace — usually genuinely deleted (e.g. `MouseIsOver`, `RefreshAuras`) or demoted to a `local`; either way addons can no longer call it. Validated against the source: of the new entries, all but one are genuinely absent in 12.0.7.
+    A name is tracked as a **global function** when it's defined as `function Name(...)` (any indentation, excluding `local`) or `Name = function(...)`. 12.1.0 split the old monolithic FrameXML into many small addons, so this list is large. **Removed** means the name left the global namespace — usually genuinely deleted (e.g. `MouseIsOver`, `RefreshAuras`) or demoted to a `local`; either way addons can no longer call it.
 
-## Global functions  (new: 240, removed: 110)
+## Global functions  (new: 244, removed: 113)
 
 **New:**
 
@@ -13,13 +13,14 @@ Global functions and constants defined in Blizzard's **addon Lua** (not in the g
 - **Blizzard_AchievementUI**: `ShowAchievementFrameForAchievement(achievementID)`
 - **Blizzard_ActionBar**: `SpellFlyout_EscapePressed()`
 - **Blizzard_ActionStatus**: `ActionStatus_DisplayMessage(text, ignoreNewbieTooltipSetting)`, `ActionStatus_OnEvent(self, event, ...)`, `ActionStatus_OnLoad(self)`, `ActionStatus_OnUpdate(self)`
+- **Blizzard_AddFriend**: `AddFriendFrame_Show()`
 - **Blizzard_AlliedRacesUI**: `AlliedRacesFrame_TryShow(raceID)`
 - **Blizzard_AnimaDiversionUI**: `TryShowAnimaDiversionFrame(...)`
 - **Blizzard_ArchaeologyUI**: `ArchaeologyFrame_ToggleUI()`, `ArcheologyDigsiteProgressBar_OnSurveyCast(event, ...)`
 - **Blizzard_ArdenwealdGardening**: `ArdenwealdGardening_LoadUI()`
 - **Blizzard_ArtifactUI**: `ArtifactFrame_OnTraitsRefunded(numRefunded, refundedTier)`, `ShowArtifactFrame()`, `ShowArtifactRelicForgeFrame()`
 - **Blizzard_AuctionHouseUI**: `HideAuctionHouseFrame()`, `ShowAuctionHouseFrame()`
-- **Blizzard_AuraContainer**: `call(must not be a forbidden object)`
+- **Blizzard_AuraContainer**: `call(expected object type '%s', got '%s')`
 - **Blizzard_AzeriteEssenceUI**: `AzeriteEssenceUI_LoadUI()`
 - **Blizzard_AzeriteUI**: `AzeriteEmpoweredItemUI_LoadUI()`
 - **Blizzard_BarbershopUI**: `HideBarberShopFrame()`, `ShowBarberShopFrame()`
@@ -34,7 +35,7 @@ Global functions and constants defined in Blizzard's **addon Lua** (not in the g
 - **Blizzard_CombatText**: `CombatText_LoadUI()`
 - **Blizzard_Commentator**: `SetSpectatorModeForOtherFrames(spectatorMode)`
 - **Blizzard_Contribution**: `ContributionCollectionFrame_LoadUI()`
-- **Blizzard_CooldownViewer**: `CooldownManagerLayout_GetGroupBuffVisualAlerts(layout)`, `CooldownManagerLayout_GetHiddenGroupBuffs(layout)`, `CooldownManagerLayout_SetGroupBuffVisualAlerts(layout, visualAlerts)`, `CooldownManagerLayout_SetHiddenGroupBuffs(layout, hiddenGroupBuffs)`, `CooldownViewerContextMenu_AddAlertEntryButton(rootDescription, alertType, payloadText, eventText, editCallback, deleteCallback, playSampleCallback)`, `CooldownViewerContextMenu_AddNewAlertButton(rootDescription, text, isEnabled, onClickCallback, disabledTooltipCallback)`, `CooldownViewerDraggedItem_Clear()`, `CooldownViewerDraggedItem_Pickup(iconFileID)`, `CooldownViewerDraggedItem_SetIsLegalTarget(isLegal)`, `ShouldDisplaySpellCooldown(cooldownInfo)`
+- **Blizzard_CooldownViewer**: `CooldownManagerLayout_GetGroupBuffVisualAlerts(layout)`, `CooldownManagerLayout_GetHiddenGroupBuffs(layout)`, `CooldownManagerLayout_SetGroupBuffVisualAlerts(layout, visualAlerts)`, `CooldownManagerLayout_SetHiddenGroupBuffs(layout, hiddenGroupBuffs)`, `CooldownViewerContextMenu_AddAlertEntryButton(rootDescription, alertType, payloadText, eventText, editCallback, deleteCallback, playSampleCallback)`, `CooldownViewerContextMenu_AddNewAlertButton(rootDescription, text, isEnabled, onClickCallback, disabledTooltipCallback)`, `CooldownViewerDraggedItem_Clear()`, `CooldownViewerDraggedItem_Pickup(iconFileID)`, `CooldownViewerDraggedItem_SetIsLegalTarget(isLegal)`, `CooldownViewer_MarkAuraCacheDirty()`, `ShouldDisplaySpellCooldown(cooldownInfo)`
 - **Blizzard_CovenantCallings**: `CovenantCallings_LoadUI()`
 - **Blizzard_CovenantPreviewUI**: `TryShowCovenantPreviewFrame(...)`
 - **Blizzard_DebugTools**: `DebugTools_LoadUI()`
@@ -99,9 +100,9 @@ Global functions and constants defined in Blizzard's **addon Lua** (not in the g
 - **Blizzard_StaticPopup_Game**: `ConfirmDisenchantRollDialog_Show(rollID, rollType)`, `ConfirmLootRollDialog_Show(rollID, rollType)`, `ConfirmTalentWipeDialog_Show(cost, talentType)`, `GossipConfirmDialog_Show(optionID, text, cost)`, `HideInstanceBootDialog()`, `HideInstanceLockDialog()`, `HideSummonConfirmationDialogs()`, `IsSummonConfirmationDialogVisible()`, `ShowInstanceBootDialog()`, `ShowInstanceLockDialog(enforceTime)`, `ShowSummonConfirmationDialog(summonReason, skipStartingArea)`, `UpdateQuestAcceptLogFullDialog()`
 - **Blizzard_StoreUI**: `CheckActiveStoreForFree(event)`, `StoreEscapePressed()`
 - **Blizzard_TrainerUI**: `ClassTrainerCollapseAllButton_OnClick(self)`, `ClassTrainer_HideSkillDetails()`, `ClassTrainer_SelectFirstLearnableSkill()`, `ClassTrainer_SetSubTextColor(button, r, g, b)`, `ClassTrainer_SetToClassTrainer()`, `ClassTrainer_SetToTradeSkillTrainer()`, `ClassTrainer_ShowSkillDetails()`
-- **Blizzard_UIPanels_Game**: `AddPlayerInteractionConditions(interactionType, conditions)`, `GetDiscordUserCommunityLink(linkDisplayText, bnetIDAccount, discordUserID, clubId, streamId, epoch, position)`, `GetDiscordUserLink(linkDisplayText, bnetIDAccount, discordUserID, lineID, chatGroup, chatTarget)`, `HideGossipFrame()`, `LootFrame_EscapePressed()`, `RegisterPlayerInteraction(interactionType, frameInfo)`, `ShowTaxiMapFrame()`
+- **Blizzard_UIPanels_Game**: `GetDiscordUserCommunityLink(linkDisplayText, bnetIDAccount, discordUserID, username, clubId, streamId, epoch, position)`, `GetDiscordUserLink(linkDisplayText, bnetIDAccount, discordUserID, lineID, chatGroup, chatTarget)`, `HideGossipFrame()`, `LootFrame_EscapePressed()`, `RegisterPlayerInteraction(interactionType, frameInfo)`, `SetPlayerInteractionConditions(interactionType, conditions)`, `ShowTaxiMapFrame()`
 - **Blizzard_UIParentPanelManager**: `GetUIPanelLayoutAttribute(name)`, `GetUIPanelLayoutFrame()`, `ManageFramePositions()`, `SetUIPanelLayoutAttribute(name, value)`
-- **Blizzard_UnitFrame**: `CompactUnitFrameLayoutTemplates_LayoutFrameElement(frame, element, templateType, containerTypeKey)`, `LocalizePlayerFrame_zhCN()`, `LocalizePlayerFrame_zhTW()`
+- **Blizzard_UnitFrame**: `CompactUnitFrameLayoutTemplates_LayoutFrameElement(frame, element, templateType, containerTypeKey)`, `CompactUnitFrame_GetOptionDispelIndicatorOverlayAnimation(frame)`, `CompactUnitFrame_GetOptionDispelIndicatorOverlayType(frame)`, `LocalizePlayerFrame_zhCN()`, `LocalizePlayerFrame_zhTW()`
 - **Blizzard_VisualAlerts**: `VisualAlertData_ForEach(callback)`, `VisualAlert_GetTypeTemplate(visualAlertType)`, `VisualAlert_GetTypeText(visualAlertType)`, `VisualAlerts_RegisterAll(manager)`
 - **Blizzard_WowSurveyUI**: `AddWowSurveyStatusFrameToStatusFrames(statusFrames)`, `WowSurveyStatusFrame_OnSurveyDelivered(event)`
 
@@ -117,7 +118,7 @@ Global functions and constants defined in Blizzard's **addon Lua** (not in the g
 - **Blizzard_Transmog**: `DisplayTypeUnassignedSupported()`, `HelpPlatesSupported()`
 - **Blizzard_UIParent**: `AnimateTexCoords(texture, textureWidth, textureHeight, frameWidth, frameHeight, numFrames, elapsed, throttle)`, `AnimatedShine_OnUpdate(elapsed)`, `Arena_LoadUI()`, `AuctionFrame_LoadUI()`, `BFAMissionFrame_EscapePressed()`, `BetterDate(formatString, timeVal)`, `BoostTutorial_AttemptLoad()`, `BuildColoredListString(...)`, `BuildIconArray(parent, baseName, template, rowSize, numRows, onButtonCreated)`, `BuildListString(...)`, `BuildMultilineTooltip(globalStringName, tooltip, r, g, b)`, `BuildNewLineListString(...)`, `ButtonPulse_OnUpdate(elapsed)`, `CanGroupInvite()`, `CommunitiesFrame_IsEnabled()`, `ConvertRGBtoColorString(color)`, `CraftFrame_LoadUI()`, `ExpansionTrial_CheckLoadUI()`, `GetBindingFromClick(input)`, `GetDungeonNameWithDifficulty(name, difficultyName)`, `GetNotchHeight()`, `GetScaledCursorPositionForFrame(frame)`, `GetScreenHeightScale()`, `GetScreenWidthScale()`, `GetSmoothProgressChange(value, displayedValue, range, elapsed, minPerSecond, maxPerSecond)`, `GetSocialColoredName(displayName, guid)`, `GetSortedSelfResurrectOptions()`, `GetUIParentOffset()`, `GlyphFrame_LoadUI()`, `InviteToGroup(name)`, `IsLevelAtEffectiveMaxLevel(level)`, `IsPlayerAtEffectiveMaxLevel()`, `KeyBindingFrame_LoadUI()`, `LocalizePlayerFrame(offsXVehicle, offsYVehicle, offsX, offsY)`, `LocalizezhCN()`, `LocalizezhTW()`, `MajorFactions_LoadUI()`, `MouseIsOver(region, topOffset, bottomOffset, leftOffset, rightOffset)`, `NPETutorial_AttemptToBegin(event)`, `NPE_CheckTutorials()`, `OpenAchievementFrameToAchievement(achievementID)`, `OrderHallMissionFrame_EscapePressed()`, `OrderHallTalentFrame_EscapePressed()`, `OutfitterUI_LoadUI()`, `QuestChoice_LoadUI()`, `RaidBrowser_IsEmpowered()`, `RealPartyIsFull()`, `RecentTimeDate(year, month, day, hour)`, `RefreshAuras(frame, unit, numAuras, suffix, checkCVar, showBuffs)`, `ReverseQuestObjective(text, objectiveType)`, `SetDesaturation(texture, desaturation)`, `ShowResurrectRequest(offerer)`, `ToggleLFGFrame()`, `ToggleRaidBrowser()`, `ToggleWoWHackCharacterUI()`, `TokenFrame_LoadUI()`, `TradeSkillFrame_LoadUI()`, `TrialAccountCapReached_Inform(capType)`, `UIDoFramesIntersect(frame1, frame2)`, `UIParentLoadAddOn(name)`, `UIParent_OnEvent(self, event, ...)`, `UIParent_OnHide(self)`, `UIParent_OnLoad(self)`, `UIParent_OnShow(self)`, `UIParent_OnUpdate(self, elapsed)`, `UIParent_Shared_OnEvent(self, event, ...)`, `UIParent_Shared_OnLoad(self)`, `UIParent_UpdateTopFramePositions()`, `UnitHasMana(unit)`, `UpdateUIElementsForClientScene(sceneType)`, `WoWHackSpellsUI_LoadUI()`, `WorldFrame_OnLoad(self)`, `WorldFrame_OnUpdate(self, elapsed)`
 - **Blizzard_UIParentPanelManager**: `UIParent_ManageFramePositions()`
-- **Blizzard_UnitFrame**: `CompactUnitFrame_GetOptionDisplayOnlyHealerPowerBars(frame, options)`, `CompactUnitFrame_GetOptionDisplayPowerBar(frame, options)`
+- **Blizzard_UnitFrame**: `CompactUnitFrame_GetOptionDisplayOnlyHealerPowerBars(frame, options)`, `CompactUnitFrame_GetOptionDisplayPowerBar(frame, options)`, `CompactUnitFrame_GetOptionShowDispelIndicatorOverlay(frame)`, `TargetFrame_UpdateBuffAnchor(self, buff, index, numDebuffs, anchorBuff, anchorIndex, size, offsetX, offsetY, mirrorVertically)`, `TargetFrame_UpdateDebuffAnchor(self, buff, index, numBuffs, anchorBuff, anchorIndex, size, offsetX, offsetY, mirrorVertically)`
 
 ## Constants  (new: 13 values + 0 strings, removed: 22)
 

@@ -110,3 +110,25 @@
 **Changed:**
 
 - **`TooltipDataLineType`** (enum) — added `ItemSpellTriggerOnUse (44), ItemSpellTriggerOnEquip (45), ItemSpellTriggerOnProc (46)` — tag tooltip lines for an item's Use/Equip/on-proc spell effects.
+
+---
+
+## Later PTR build additions (2026-06-20)
+
+### ForbiddenAspectConstantsDocumentation
+
+The forbidden-partition security layer behind Aura Buttons expanded substantially.
+
+**New:**
+
+- `ForbiddenAspectInheritance` (enum) — how forbidden aspects propagate. Values: `Parent` (through object hierarchies), `Layout` (through the anchor graph).
+
+**Changed:** `ForbiddenAspect` (enum) — added values (bitmask), each restricting a facet of the security system:
+
+- `UntrustedScriptExecution` (4) — blocks execution of all scripts on the object (propagates to children).
+- `UntrustedLayoutScriptExecution` (8) — blocks layout scripts (e.g. OnSizeChanged); propagates to children and anything anchored to it.
+- `EventRegistrations` (16) — blocks querying/modifying registered script events.
+- `AlwaysPropagateInput` (32) — forces mouse/keypress input propagation (propagates to children).
+- `ScriptedInput` (64) — blocks APIs that trigger synthetic input from scripts.
+- `QueryFocus` (128) — blocks APIs that query input focus state.
+- `Shown` (256) — blocks control of a region's shown state.
